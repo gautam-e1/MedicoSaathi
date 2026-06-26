@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedicoSaathi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="auth-screen" class="auth-screen">
+
+    <div class="auth-container">
+
+        <!-- LOGIN -->
+
+        <div class="auth-box">
+
+            <h2>Welcome Back 👋</h2>
+
+            <p class="auth-subtitle">
+                Login to your medical dashboard
+            </p>
+
+            <input
+                type="text"
+                id="login-username"
+                placeholder="Username"
+            >
+
+            <input
+                type="password"
+                id="login-password"
+                placeholder="Password"
+            >
+
+            <button onclick="loginUser()">
+                Login
+            </button>
+
+       </div>
+
+</div>
+
+</div>
+
+<div class="app" id="main-app" style="display:none;">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+                </div>
+                <div class="brand-text">
+                    <h1>MedicoSaathi</h1>
+                   <span class="brand-tagline">
+    Trusted Pharma Network
+</span>
+                </div>
+                <button
+    class="collapse-btn"
+    onclick="toggleCollapse()"
+>
+    ☰
+</button>
+            </div>
+
+            <div class="sidebar-label">
+    MAIN
+</div>
+            <nav>
+                <a class="nav-item active" data-view="dashboard" onclick="navigate('dashboard')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                    <span>Dashboard</span>
+                </a>
+                <div class="sidebar-group">
+    <span>
+        OPERATIONS
+    </span>
+
+</div>
+                <a class="nav-item" data-view="inventory" onclick="navigate('inventory')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    <span>Inventory</span>
+                </a>
+                <a class="nav-item" data-view="billing" onclick="navigate('billing')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20M6 16h4M14 16h4"/></svg>
+                    <span>Billing</span>
+                </a>
+                <a class="nav-item" data-view="wholesalers" onclick="navigate('wholesalers')">
+                    <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+>
+    <path d="M3 21h18"/>
+    <path d="M5 21V8l7-5v18"/>
+    <path d="M12 21V13l7-5v13"/>
+</svg>
+                    <span>Wholesalers</span>
+</a>
+<a
+    class="nav-item"
+    data-view="customers"
+    onclick="navigate('customers')"
+>
+
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+    >
+
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+
+        <circle cx="9" cy="7" r="4"/>
+
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+
+    </svg>
+
+    <span>Customers</span>
+
+</a>
+                <div class="sidebar-group">
+    <span>
+        REPORTS
+    </span>
+
+</div>
+<a class="nav-item" data-view="bills" onclick="navigate('bills')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+        <path d="M14 2v6h6"/>
+        <path d="M8 13h8M8 17h8"/>
+    </svg>
+   <span>Bill History</span>
+</a>
+
+<a class="nav-item" data-view="orders" onclick="navigate('orders')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 3h18v4H3z"/>
+        <path d="M3 7l9 6 9-6"/>
+        <path d="M3 13v8h18v-8"/>
+    </svg>
+    <span>Order History</span>
+</a>
+<div class="sidebar-group">
+    <span>
+        SYSTEM
+    </span>
+
+</div>
+<a class="nav-item"
+   data-view="settings"
+   onclick="navigate('settings')">
+
+   <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+>
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01A1.65 1.65 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+</svg>
+
+    <span>Settings</span>
+
+</a>
+            </nav>
+
+<div class="sidebar-footer">
+
+    <div class="user-mini">
+
+        <div class="user-mini-avatar">
+            G
+        </div>
+
+        <div class="user-mini-info">
+
+            <h4 id="sidebar-username">
+                Gautam
+            </h4>
+
+            <span>
+                Admin
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="sidebar-actions">
+
+    <button
+    id="themeBtn"
+    class="icon-btn"
+    onclick="toggleTheme()"
+>
+    🌙
+</button>
+
+        <button
+            class="logout-mini"
+            onclick="logoutUser()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        <button class="menu-btn" id="menuBtn" onclick="toggleSidebar()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+
+        <main class="content">
+            <!-- Dashboard -->
+            <section id="view-dashboard" class="view active">
+                <div class="page-header">
+                    <div>
+                        <h2 id="dashboard-shop-title">
+    Dashboard
+</h2>
+                        <p class="page-desc">Overview of your medical shop</p>
+                    </div>
+                </div>
+                
+                <div class="stats-row">
+                    <div class="stat-card stat-blue">
+                        <div class="stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-number" id="stat-total">0</span>
+                            <span class="stat-label">Total Medicines</span>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-amber">
+                        <div class="stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-number" id="stat-low">0</span>
+                            <span class="stat-label">Low Stock</span>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-red">
+                        <div class="stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-number" id="stat-out">0</span>
+                            <span class="stat-label">Out of Stock</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="analytics-row">
+<div class="analytics-card">
+
+    <div class="analytics-icon">
+        💊
+    </div>
+
+    <div>
+
+        <h3 id="stat-sales-items">
+            0
+        </h3>
+
+        <p>Medicines Sold</p>
+
+    </div>
+
+</div>
+
+    <div class="analytics-card">
+        <div class="analytics-icon">💰</div>
+        <div>
+            <h3 id="today-sales">₹0</h3>
+            <p>Today's Sales</p>
+        </div>
+    </div>
+
+    <div class="analytics-card">
+        <div class="analytics-icon">🧾</div>
+        <div>
+            <h3 id="today-bills">0</h3>
+            <p>Today's Bills</p>
+        </div>
+    </div>
+
+    <div class="analytics-card">
+        <div class="analytics-icon">📈</div>
+        <div>
+            <h3 id="monthly-revenue">₹0</h3>
+            <p>Monthly Revenue</p>
+            
+        </div>
+    </div>
+
+    <div class="analytics-card">
+
+    <div class="analytics-icon">
+        🧮
+    </div>
+
+    <div>
+
+        <h3 id="average-bill">
+            ₹0
+        </h3>
+
+        <p>Average Bill</p>
+
+    </div>
+
+</div>
+
+<div class="analytics-card">
+
+    <div class="analytics-icon">
+        🏆
+    </div>
+
+    <div>
+
+        <h3 id="highest-bill">
+            ₹0
+        </h3>
+
+        <p>Highest Bill</p>
+
+    </div>
+
+</div>
+
+<div class="analytics-card">
+
+    <div class="analytics-icon">
+        🏅
+    </div>
+
+    <div>
+
+        <h3 id="best-sales-day">
+            -
+        </h3>
+
+        <p>Best Sales Day</p>
+
+        <small id="best-sales-amount">
+            ₹0
+        </small>
+
+    </div>
+
+</div>
+
+<div class="analytics-card">
+
+    <div class="analytics-icon">
+        📊
+    </div>
+
+    <div>
+
+        <h3 id="collection-rate">
+            0%
+        </h3>
+
+        <p>Collection Rate</p>
+
+    </div>
+</div>
+<div class="analytics-card">
+
+    <div class="analytics-icon">
+        📈
+    </div>
+
+    <div>
+
+        <h3 id="revenue-growth">
+            N/A
+        </h3>
+
+        <p>
+            Revenue Growth
+        </p>
+
+    </div>
+
+</div>
+</div>
+                <div class="card alert-card">
+                    <div class="card-header">
+                        <h3>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+                            Stock Alerts
+                        </h3>
+                    </div>
+
+                    <div id="alert-list"></div>
+                    
+                </div>
+                <div class="card alert-card">
+
+    <div class="card-header">
+
+        <h3>
+
+            <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+
+                <path
+                    d="M12 8v4l3 3"
+                />
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                />
+
+            </svg>
+
+            Expiry Alerts
+
+        </h3>
+
+    </div>
+
+    <div id="expiry-alert-list"></div>
+</div>
+<div class="analytics-grid">
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+
+            <h3>
+                Revenue Trend (Last 7 Days)
+            </h3>
+
+        </div>
+
+        <canvas id="salesChart"></canvas>
+
+    </div>
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+
+            <h3>
+                Top Medicines
+            </h3>
+
+        </div>
+
+        <div id="top-medicines">
+        </div>
+
+    </div>
+<div class="overstock-wrapper">
+
+<div class="risk-alert-box">
+
+    <div class="risk-header">
+        <h3>⚠ High Inventory Medicines</h3>
+    </div>
+
+    <div class="risk-content">
+
+        <div class="risk-info">
+
+            <div class="risk-title">
+                Medicines with stock 30+
+            </div>
+
+            <div class="risk-sub">
+                Medicines with excess stock quantity
+            </div>
+
+        </div>
+
+        <div class="risk-count">
+            0
+        </div>
+
+    </div>
+
+</div>
+
+            </section>
+            
+
+            <!-- Inventory -->
+            <section id="view-inventory" class="view">
+                <div class="page-header">
+                    <div>
+                        <h2>Inventory</h2>
+                        <p class="page-desc">Manage your medicine stock</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openMedicineModal()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                        Add Medicine
+                    </button>
+                </div>
+                <div class="card">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <input type="text" id="search-input" placeholder="Search medicines..." oninput="loadMedicines()">
+                        </div>
+                        <div class="filter-pills">
+                            <button class="pill active" data-filter="all" onclick="setFilter('all')">All</button>
+                            <button class="pill" data-filter="low" onclick="setFilter('low')">
+                                <span class="pill-dot dot-amber"></span>Low Stock
+                            </button>
+                            <button class="pill" data-filter="out" onclick="setFilter('out')">
+                                <span class="pill-dot dot-red"></span>Out of Stock
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="data-table" id="medicine-table">
+                            <thead>
+                                <tr>
+                                    <th>Medicine Name</th>
+                                    <th>Category</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Expiry</th>
+                                    <th>GST %</th>
+                                    <th>Status</th>
+                                    <th class="th-actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="medicine-tbody"></tbody>
+                        </table>
+                    </div>
+                    <div id="medicine-empty" class="empty-state" style="display:none">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        <p>No medicines found</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Billing -->
+            <section id="view-billing" class="view">
+                <div class="page-header">
+                    <button onclick="resetInvoice()" class="btn btn-ghost">Reset Invoice</button>
+<button onclick="setInvoiceNumber()" class="btn btn-primary">Set Invoice</button>
+                    <div>
+                        <h2>Billing</h2>
+                        
+                        <p class="page-desc">Point of Sale</p>
+                    </div>
+                </div>
+                <div class="pos-layout">
+                    
+                    <div class="pos-products card">
+                        <div class="pos-panel-header">
+                            <h3>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                                Products
+                            </h3>
+                        </div>
+                        <div class="pos-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <input type="text" id="billing-search" placeholder="Search product..." oninput="searchForBilling()">
+                        </div>
+                        <div id="billing-results" class="pos-product-list"></div>
+                    </div>
+                    <div class="pos-cart card">
+                        <div class="pos-panel-header">
+                            <h3>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                                Current Sale
+                            </h3>
+                            
+                            <span class="cart-count" id="cart-count">0 items</span>
+                        </div>
+                        <div class="customer-box">
+    <label>Customer Name</label>
+    <input type="text" id="customer-name" placeholder="👤 Enter Customer Name">
+    <div class="customer-box">
+    <label>Customer Phone</label>
+    <input type="text" id="customer-phone" placeholder="📱 Enter Phone Number">
+</div>
+</div>
+                        <div id="cart-items" class="pos-cart-items">  
+                        </div>
+                        <div class="pos-totals">
+                            <div class="pos-total-row pos-grand-total">
+                                <span>Total</span>
+                                <span id="cart-total">&#8377;0.00</span>
+                            </div>
+                        </div>
+                       <div class="payment-wrapper">
+
+    <div class="payment-top">
+
+        <div class="payment-group">
+
+            <label>
+                Paid Amount
+            </label>
+
+            <input
+    id="paidAmount"
+    type="number"
+    oninput="updateDueAmount()"
+/>
+
+        </div>
+
+        <div class="payment-group">
+
+            <label>
+                Payment Method
+            </label>
+
+            <select
+    id="paymentMethod"
+    onchange="toggleUpiApps()"
+>
+
+    <option value="Cash">
+        Cash
+    </option>
+
+    <option value="UPI">
+        UPI
+    </option>
+
+    <option value="Card">
+        Card
+    </option>
+
+    <option value="Credit">
+        Credit
+    </option>
+
+</select>
+
+        </div>
+
+    </div>
+
+    <div class="due-box">
+
+        <span>
+            Remaining Due
+        </span>
+
+        <span id="remainingDue">
+            ₹0
+        </span>
+
+    </div>
+
+    <div class="payment-buttons">
+
+        <button
+            class="payment-clear-btn"
+            onclick="clearCart()"
+        >
+            Clear
+        </button>
+
+        <button
+            class="payment-generate-btn"
+            onclick="generateBill()"
+        >
+            Generate Bill
+        </button>
+
+    </div>
+
+</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wholesalers -->
+            <section id="view-wholesalers" class="view">
+                <div class="page-header">
+                    <div>
+                        <h2>Wholesalers</h2>
+                        <p class="page-desc">Manage your suppliers</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openWholesalerModal()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                        Add Wholesaler
+                    </button>
+                </div>
+                <div id="wholesaler-list" class="ws-grid"></div>
+            </section>
+            <!-- Customers -->
+
+<section id="view-customers" class="view">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Customers
+            </h2>
+
+            <p class="page-desc">
+                Customer ledger & history
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="customers-grid">
+
+        <div class="customer-stat-card">
+
+    <h4>
+        Total Customers
+    </h4>
+
+    <h2 id="total-customers">
+        0
+    </h2>
+
+</div>
+
+<div class="customer-stat-card">
+
+    <h4>
+        Total Due
+    </h4>
+
+    <h2 id="total-due">
+        ₹0
+    </h2>
+
+</div>
+
+<div class="customer-stat-card">
+
+    <h4>
+        Paid Customers
+    </h4>
+
+    <h2 id="paid-customers">
+        0
+    </h2>
+
+</div>
+
+<div class="customer-stat-card">
+
+    <h4>
+        Due Customers
+    </h4>
+
+    <h2 id="due-customers">
+        0
+    </h2>
+
+</div>
+
+    </div>
+<div class="customer-analytics-grid">
+
+    <div class="customer-analytics-card">
+
+        <h3>🏆 Top Customers</h3>
+
+        <div id="top-customers-list"></div>
+
+    </div>
+
+    <div class="customer-analytics-card">
+
+        <h3>⚠ Highest Due</h3>
+
+        <div id="highest-due-list"></div>
+
+    </div>
+
+</div>
+
+
+    <div class="customer-ledger-card">
+
+        <div class="customer-ledger-header">
+
+    <h3>
+        Customer Ledger
+    </h3>
+
+    <button
+        class="btn btn-primary"
+        onclick="exportCustomersCSV()"
+    >
+        Export Customers
+    </button>
+
+</div>
+        <div class="search-box customer-search-box">
+
+    <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+    >
+        <circle
+            cx="11"
+            cy="11"
+            r="8"
+        ></circle>
+
+        <path
+            d="M21 21l-4.35-4.35"
+        ></path>
+    </svg>
+
+    <input
+        type="text"
+        id="customer-search"
+        placeholder="Search customer name or phone..."
+        oninput="filterCustomers()"
+    >
+
+</div>
+
+        <div class="table-wrapper">
+
+            <table class="customer-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Customer</th>
+
+                        <th>Phone</th>
+
+                        <th>Last Purchase</th>
+
+                        <th>Total Due</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="customer-table-body">
+
+                    <tr>
+
+                        <td colspan="5">
+
+                            No customer records
+
+                            <td colspan="5" class="customer-empty"></td>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+            <section id="view-bills" class="view">
+    <div class="page-header">
+        <h2>Bill History</h2>
+        <button class="btn btn-danger-ghost btn-sm" onclick="deleteAllBills()">
+    Delete All
+</button>
+    </div>
+
+    <div class="card">
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Invoice</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody id="bill-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section id="view-orders" class="view">
+    <div class="page-header">
+        <h2>Order History</h2>
+
+        <button class="btn btn-danger-ghost btn-sm"
+            onclick="deleteAllOrders()">
+            Delete All
+        </button>
+    </div>
+        <div id="order-list" class="order-cards"></div>
+        </section>
+        <!-- SETTINGS -->
+
+<section id="view-settings" class="view">
+
+    <div class="premium-settings-wrapper">
+
+        <div class="premium-settings-header">
+
+            <div
+    class="premium-shop-icon"
+
+    style="position:relative"
+
+    onclick="
+        document
+        .getElementById(
+            'shop-logo'
+        )
+        .click()
+    "
+>
+
+    <img
+        id="shop-logo-preview"
+
+        style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            border-radius:24px;
+            display:none;
+        "
+    >
+
+    <span id="shop-logo-plus">
+        ✚
+    </span>
+   <button
+    id="remove-shop-logo"
+    class="logo-remove-btn"
+    onclick="removeShopLogo(event)"
+>
+    ×
+</button>
+
+</div>
+
+<input
+    type="file"
+
+    id="shop-logo"
+
+    accept="image/*"
+
+    style="display:none"
+
+    onchange="
+        previewShopLogo(event)
+    "
+>
+
+            <div>
+                <h1>Shop Profile</h1>
+
+                <p>
+                    Setup your shop profile and business information
+                </p>
+            </div>
+
+        </div>
+
+        <div class="premium-settings-card">
+
+            <div class="premium-grid">
+
+                <div class="premium-field">
+                    <label>Shop Name</label>
+
+                    <input
+                        type="text"
+                        id="setting-shop-name"
+                        placeholder="Enter medical shop name"
+                    >
+                </div>
+
+                <div class="premium-field">
+                    <label>Owner Name</label>
+
+                    <input
+                        type="text"
+                        id="setting-owner-name"
+                        placeholder="Enter owner name"
+                    >
+                </div>
+
+                <div class="form-group">
+
+    <label>
+        UPI ID
+    </label>
+
+    <input
+        type="text"
+        id="shop-upi"
+        class="input"
+        placeholder="example@paytm"
+    >
+
+</div>
+
+                <div class="premium-field">
+                    <label>Phone Number</label>
+
+                    <input
+                        type="text"
+                        id="setting-phone"
+                        placeholder="+91 9876543210"
+                    >
+                </div>
+
+                <div class="premium-field">
+                    <label>GST Number (Optional)</label>
+
+                    <input
+                        type="text"
+                        id="setting-gst"
+                        placeholder="GST Number"
+                    >
+                </div>
+
+                <div class="premium-field">
+                    <label>Business Type</label>
+
+                    <select id="setting-business-type">
+
+                        <option>
+                            GST Registered
+                        </option>
+
+                        <option>
+                            Non-GST Shop
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="premium-field full-width">
+
+                    <label>Shop Address</label>
+
+                    <textarea
+                        id="setting-address"
+                        placeholder="Enter complete shop address"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+            <button
+                class="premium-save-btn"
+                onclick="saveSettings()"
+            >
+                Save Shop 
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+        </main>
+    </div>
+
+    <!-- Medicine Modal -->
+    <div class="modal-backdrop" id="medicine-modal">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-head">
+                <h3 id="medicine-modal-title">Add Medicine</h3>
+                <button class="close-btn" onclick="closeMedicineModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form id="medicine-form" onsubmit="saveMedicine(event)">
+                <div class="modal-body">
+                    <div class="field">
+                        <label>Medicine Name</label>
+                        <input type="text" id="med-name" class="input" placeholder="e.g. Paracetamol 500mg" required>
+                    </div>
+                    <div class="field-row">
+                        <div class="field">
+                            <label>Quantity</label>
+                            <input type="number" id="med-qty" class="input" min="0" placeholder="0" required>
+                        </div>
+                        <div class="field">
+                            <label>Price (&#8377;)</label>
+                            <input type="number" id="med-price" class="input" min="0" step="0.01" placeholder="0.00" required>
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field">
+                            <label>Category</label>
+                            <select id="med-category" class="input">
+                                <option value="">Select category</option>
+                                <option>Tablet</option>
+                                <option>Capsule</option>
+                                <option>Syrup</option>
+                                <option>Injection</option>
+                                <option>Ointment</option>
+                                <option>Drops</option>
+                                <option>Powder</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Expiry Date</label>
+                            <input type="date" id="med-expiry" class="input">
+                        </div>
+                    </div>
+                    <div class="field">
+    <label>GST (%)</label>
+    <input type="number" id="med-gst" class="input" placeholder="e.g. 5" min="0" step="0.1">
+</div>
+                </div>
+                <div class="modal-foot">
+                    <button type="button" class="btn btn-ghost" onclick="closeMedicineModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Medicine</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Wholesaler Modal -->
+    <div class="modal-backdrop" id="wholesaler-modal">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-head">
+                <h3>Add Wholesaler</h3>
+                <button class="close-btn" onclick="closeWholesalerModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <form onsubmit="saveWholesaler(event)">
+                <div class="modal-body">
+                    <div class="field">
+                        <label>Wholesaler Name</label>
+                        <input type="text" id="ws-name" class="input" placeholder="e.g. MedPlus Distributors" required>
+                    </div>
+                    <div class="field">
+                        <label>Phone Number</label>
+                        <input type="tel" id="ws-phone" class="input" placeholder="e.g. +91 98765 43210" required>
+                    </div>
+                </div>
+                <div class="modal-foot">
+                    <button type="button" class="btn btn-ghost" onclick="closeWholesalerModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Wholesaler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="bill-modal">
+
+    <div class="modal bill-modal"
+         onclick="event.stopPropagation()">
+
+        <div id="bill-content"></div>
+
+        <div class="invoice-actions">
+
+            <div class="invoice-type-switch">
+
+                <button
+                    class="btn btn-ghost"
+                    onclick="setThermalMode()"
+                >
+                    Thermal Receipt
+                </button>
+
+                <button
+    class="btn btn-ghost pdf-btn"
+onclick="downloadInvoicePDF()"
+>
+    ⬇ Download PDF
+</button>
+
+                <button
+                    class="btn btn-ghost"
+                    onclick="setA4Mode()"
+                >
+                    A4 Invoice
+                </button>
+
+            </div>
+
+            <div class="invoice-main-actions">
+
+                <button
+                    class="btn btn-ghost"
+                    onclick="closeBillModal()"
+                >
+                    Close
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="printBill()"
+                >
+                    Print Invoice
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+</body>
+</html>
