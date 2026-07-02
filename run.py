@@ -1,13 +1,9 @@
 from app import create_app
 
-from app.extensions.extensions import db
 
-from flask_migrate import Migrate
-
-
+# create_app() is the single application entry point: it owns all extension
+# initialisation (db, migrate). This module only constructs and runs the app.
 app = create_app()
-
-migrate = Migrate(app, db)
 
 
 if __name__ == "__main__":
