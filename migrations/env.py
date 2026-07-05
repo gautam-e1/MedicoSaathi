@@ -72,6 +72,12 @@ def run_migrations_offline():
         context.run_migrations()
 
 
+def include_name(name, type_, parent_names):
+    if type_ == "schema":
+        return name in (None, "tenant")
+    return True
+
+
 def run_migrations_online():
     """Run migrations in 'online' mode.
 
@@ -100,6 +106,8 @@ def run_migrations_online():
         context.configure(
             connection=connection,
             target_metadata=get_metadata(),
+            include_schemas=True,
+            include_name=include_name,
             **conf_args
         )
 
