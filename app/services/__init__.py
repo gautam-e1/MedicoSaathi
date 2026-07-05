@@ -8,3 +8,10 @@ from app.services.service_exceptions import (  # noqa: F401
     ServiceError,
     ValidationError,
 )
+
+# Domain B — Identity services
+from app.services.user_service import UserService  # noqa: F401
+from app.services.role_permission_service import (  # noqa: F401
+    RolePermissionService,
+)
+from app.services.session_service import SessionService  # noqa: F401
