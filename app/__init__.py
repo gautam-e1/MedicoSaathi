@@ -51,6 +51,14 @@ def create_app(config_name=None):
             User,
             Customer
         )
+        from app.models.identity import (
+            TenantUser,
+            Role,
+            Permission,
+            RolePermission,
+            ShopUser,
+            AuthSession,
+        )
 
     # --- Global error handlers ---
     from app.core.errors import register_error_handlers
