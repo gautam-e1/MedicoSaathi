@@ -15,3 +15,9 @@ from app.services.role_permission_service import (  # noqa: F401
     RolePermissionService,
 )
 from app.services.session_service import SessionService  # noqa: F401
+from app.services.auth_service import (  # noqa: F401
+    AuthService,
+    LoginResult,
+    RefreshResult,
+    ShopSelectResult,
+)
